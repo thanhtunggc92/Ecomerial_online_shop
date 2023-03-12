@@ -43,7 +43,7 @@ const products = [
       'name': 'Sony Playstation 4 Pro White Version',
       'image': '/images/playstation.jpg',
       'description':
-        'The ultimate home entertainment center starts with PlayStation. Whether you are into gaming, HD movies, television, music',
+        ' ',
       'brand': 'Sony',
       'category': 'Electronics',
       'price': 399.99,
@@ -56,7 +56,7 @@ const products = [
       'name': 'Logitech G-Series Gaming Mouse',
       'image': '/images/mouse.jpg',
       'description':
-        'Get a better handle on your games with this Logitech LIGHTSYNC gaming mouse. The six programmable buttons allow customization for a smooth playing experience',
+        ' ',
       'brand': 'Logitech',
       'category': 'Electronics',
       'price': 49.99,
