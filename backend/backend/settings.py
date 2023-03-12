@@ -120,7 +120,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+MEDIA_URL = '/images/'  # url to render the images
+ 
+STATICFILES_DIR =[
+    BASE_DIR / 'static'  # allow django update images
+]
 
+MEDIA_ROOT = 'static/images'  # tell django where to upload image
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
