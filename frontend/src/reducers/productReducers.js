@@ -1,14 +1,20 @@
- export const productListReducer = (state ={products:[]}, action)=>{
-    switch(action.type){
-        case 'RPODUCT_LIST_REQUEST':
-            return {loading:true, products:[]}
-        case 'RPODUCT_LIST_SUCCESS':
-            return {loading:false, products:action.payload }
+import {PRODUCT_LIST_REQUEST,PRODUCT_LIST_SUCCESS,PRODUCT_LIST_FAIL} from '../constants/productConstants'
 
-        case 'RPODUCT_LIST_FAIL':
-            return {loading:false, products:action.payload}
+
+
+
+function productListReducer  (state ={products:[]}, action){
+    switch(action.type){
+        case PRODUCT_LIST_REQUEST:
+            return {loading:true, products:[]};
+        case PRODUCT_LIST_SUCCESS:
+            return {loading:false, products:action.payload };
+
+        case PRODUCT_LIST_FAIL:
+            return {loading:false, products:action.payload};
         
         default:
-            return state
+            return state;
     }
 }
+export {productListReducer}

@@ -1,4 +1,4 @@
-import { StoreCreator,combineReducers,applyMiddleware,legacy_createStore} from 'redux';
+import { combineReducers,applyMiddleware,legacy_createStore} from 'redux';
 import thunk from 'redux-thunk';
 import {composeWithDevTools  } from 'redux-devtools-extension';
 import { productListReducer } from './reducers/productReducers';
