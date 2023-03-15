@@ -15,6 +15,8 @@ class UserProductSerializer(serializers.ModelSerializer):
         return obj.is_staff
     def get__id(self,obj):
         return obj.id
+    
+    
     def get_name(self,obj):
         name = obj.first_name
         if name =="":
