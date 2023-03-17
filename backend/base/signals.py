@@ -1,12 +1,13 @@
-from django.db.models.signals import pre_save,post_save
+from django.db.models.signals import pre_save
 from django.contrib.auth.models import User
 
 
-def updateUser(sender,instance, *args,**kwargs):
+
+def updateUser(sender, instance, **kwargs):
     user = instance
-    if user.email != "" and user.username == "":
+    if user.email != '':
         user.username = user.email
+        print(user.username)
 
 
-
-post_save.connect(updateUser,sender=User)
+pre_save.connect(updateUser,sender=User)

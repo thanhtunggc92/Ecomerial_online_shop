@@ -10,6 +10,7 @@ from base.serializers import ProductSerializer,UserProductSerializer,UserProduct
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import status
+from django.utils.crypto import get_random_string
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -29,22 +30,40 @@ class MyTokenObtainPairView(TokenObtainPairView):
 
 
 
-
 @api_view(['POST'])
 def registerUser(request):
     data = request.data
+    
     try:
         user = User.objects.create(
-            first_name = data['name'],
-            username= data['email'],
-            email = data['email'],
-            password = make_password(data['password']), 
+            first_name=data['name'],
+            username=data['email'],
+            email=data['email'],
+            password=make_password(data['password'])
         )
-        seriazlizer = UserProductSerializerWithToken(user,many= False)
-        return Response(seriazlizer.data)
+    
+        serializer = UserProductSerializerWithToken(user , many=False)
+        return Response(serializer.data)
     except:
-        message = {'detail':'User with this email is already exist.'}
-        return Response(message,status=status.HTTP_400_BAD_REQUEST)
+        message = {'detail': 'User with this email already exists'}
+        return Response(message, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def updateUserProfile(request):
+    user = request.user
+    serializer = UserProductSerializerWithToken(user,many=False)
+    data = request.data
+    user.first_name = data['name']
+    user.username = data['email']
+    user.email = data['email']
+    if data['password'] != "":
+        user.password = make_password(data['password'])
+    
+    user.save()
+    return Response(serializer.data)
 
 
 

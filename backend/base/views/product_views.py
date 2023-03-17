@@ -6,7 +6,7 @@ from base.models import Product
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from base.serializers import ProductSerializer,UserProductSerializer,UserProductSerializerWithToken
-from base.products import products
+
 from rest_framework import status
 
 
