@@ -28,9 +28,7 @@ function CartScreens(){
     // It seems like the addToCart function is not being called correctly from the ProductScreen component. Instead of calling the addToCart function directly, you should dispatch it as an action using dispatch(addToCart(id, qty)).
 
     // Try updating your addToCartHandler function in ProductScreen as follows:
-    
-    // javascript
-    // Copy code
+   
     // const addToCartHandler = () => {
     //     dispatch(addToCart(id, qty))
     //     history(`/cart/${id}?qty=${qty}`)
@@ -40,7 +38,7 @@ function CartScreens(){
        dispatch(removeFromCart(productId))
     }
     const checkoutHandler = ()=>{
-        history('/login?redirect=shipping/')
+        history('/login?redirect=shipping')
     }
     return(
         <Row>
