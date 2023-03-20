@@ -15,8 +15,9 @@ import { USER_LOGIN_FAIL,
     USER_UPDATE_PROFILE_FAIL,
     USER_UPDATE_PROFILE_REQUEST,
     USER_UPDATE_PROFILE_SUCCESS,
-    USER_UPDATE_PROFILE_RESET,
+
  } from '../constants/userConstants';
+ import { ORDER_LIST_MY_RESET } from '../constants/orderConstants'
 import axios from 'axios'
 
 export const login = (email,password) => async (dispatch) =>{
@@ -61,6 +62,7 @@ export const logout = ()  => (dispatch) =>{
         type:USER_LOGOUT
     })
     dispatch({type:USER_DETAILS_RESET})
+    dispatch({type:ORDER_LIST_MY_RESET})
 }
 
 export const register = (name,email,password) => async (dispatch) =>{
@@ -132,7 +134,6 @@ export const getUserDetails = (id) => async (dispatch,getState) =>{
         })
 
     
-        localStorage.setItem('userInfo',JSON.stringify(data))
     }catch(error){
         dispatch({
             type:USER_DETAILS_FAIL,
@@ -159,8 +160,9 @@ export const updateUserProfile = (user) => async (dispatch,getState) =>{
         const config = {
             headers: {
                 'content-type':'application/json',
-                Authorization: `Bearer ${userInfo.token}`
+                Authorization: `Bearer ${JSON.parse(userInfo.token)}`
             }
+
         }
         const {data} = await axios.put(
             `/api/users/profile/update/`,
